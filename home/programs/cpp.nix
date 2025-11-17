@@ -4,7 +4,5 @@
     gcc
     gnumake
     sdl3
-    clang
-    clang-tools
   ];
 }
