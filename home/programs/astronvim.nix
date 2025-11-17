@@ -5,6 +5,9 @@
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
+    plugins = with pkgs.vimPlugins; [
+      coc-clangd
+    ];
 
     # Установка AstroNvim
     withNodeJs = true; # Для LSP и некоторых плагинов
@@ -21,7 +24,6 @@
       lua
       stylua
       shellcheck
-      coc.clangd
     ];
   };
 }
