@@ -3,5 +3,6 @@
     cmake
     gcc
     gnumake
+    sdl3
   ];
 }
