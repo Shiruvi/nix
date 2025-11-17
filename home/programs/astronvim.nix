@@ -2,14 +2,14 @@
 let
   nvimFHS = pkgs.callPackage ({ buildFHSEnv, writeShellScript, neovim }:
     buildFHSEnv {
-      name = "nvim";
+      name = "v";
       targetPkgs = pkgs: with pkgs; [ 
         neovim
         python3
         nodejs
         cargo
       ];
-      runScript = writeShellScript "nvim.sh" ''
+      runScript = writeShellScript "n.sh" ''
         exec ${neovim}/bin/nvim "$@"
       '';
     }) {};
