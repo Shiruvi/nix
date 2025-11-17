@@ -1,19 +1,27 @@
-{pkgs, ...}:
-let
-  nvimFHS = pkgs.callPackage ({ buildFHSEnv, writeShellScript, neovim }:
-    buildFHSEnv {
-      name = "v";
-      targetPkgs = pkgs: with pkgs; [ 
-        neovim
-        python3
-        nodejs
-        cargo
-      ];
-      runScript = writeShellScript "n.sh" ''
-        exec ${neovim}/bin/nvim "$@"
-      '';
-    }) {};
-in
-{
-  home.packages = [ nvimFHS ];
+{ pkgs, ... }:{
+  #AstroNvim
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+
+    # Установка AstroNvim
+    withNodeJs = true; # Для LSP и некоторых плагинов
+    withPython3 = true;
+
+    # Базовые зависимости для работы
+    extraPackages = with pkgs; [
+      gcc
+      ripgrep
+      fd
+      lazygit
+      nodejs
+      python3
+      lua
+      stylua
+      shellcheck
+      coc.clangd
+    ];
+  };
 }
