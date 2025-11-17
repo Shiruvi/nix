@@ -2,6 +2,9 @@
   #AstroNvim
   programs.neovim = {
     enable = true;
+    plugins = with pkgs.vimPlugins; [
+      coc-clangd
+    ];
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
