@@ -1,4 +1,7 @@
-{ pkgs, ... }: {
+{ pkgs
+, lib
+, ...
+}: {
   programs.firejail = {
     enable = true;
     wrappedBinaries = {

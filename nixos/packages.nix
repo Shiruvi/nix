@@ -30,7 +30,6 @@
 
     # Editors
     vim
-    onlyoffice-desktopeditors
 
     # Browser
     firefox
@@ -70,6 +69,5 @@
     exfat
     fuse
     gvfs
-
   ];
 }

@@ -1,7 +1,7 @@
-{ pkgs, ... }:{ 
+{ pkgs, ... }: {
   users.users.Shiruvi = {
     isNormalUser = true;
-    extraGroups = [ 
+    extraGroups = [
       "audio"
       "wheel"
       "input"
@@ -13,4 +13,9 @@
     ];
     shell = pkgs.zsh;
   };
+  system.activationScripts.script.text = ''
+    mkdir -p /var/lib/AccountsService/{icons,users}
+    cp /home/Shiruvi/Pictures/.face /var/lib/AccountsService/icons/Shiruvi
+    echo -e "[User]\nIcon=/var/lib/AccountsService/icons/Shiruvi\n" > /var/lib/AccountsService/users/Shiruvi
+  '';
 }
