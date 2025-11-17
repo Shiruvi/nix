@@ -1,7 +1,6 @@
 {
   #WARN: Don't touch this preset and create custom one please
   imports = [
-    ./hardware-configuration.nix
     ./packages.nix
     ./config/Modules.nix
     ./pkgs/Modules.nix
