@@ -1,7 +1,7 @@
 {
   programs.virt-manager.enable = true;
 
-  users.groups.libvirtd.members = [ "your_username" ];
+  users.groups.libvirtd.members = [ "Shiruvi" ];
 
   virtualisation.libvirtd.enable = true;
 

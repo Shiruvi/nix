@@ -1,7 +1,7 @@
 {
   imports = [
-    ./astronvim.nix
     ./cpp.nix 
     ./cursors.nix
+    ./helix.nix
   ];
 }
