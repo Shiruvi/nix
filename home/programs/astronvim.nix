@@ -6,7 +6,7 @@ let
     owner = "AstroNvim";
     repo = "AstroNvim";
     rev = "v4";  # Укажи нужную версию или commit
-    sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+    sha256 = "sha256-Grm7UI/0qqRtkL39sbKysgZB8XJUubGUqwVDYj8mqMU=";
   };
 in
 {
