@@ -9,6 +9,10 @@
     # Все инструменты, которые нужны AstroNvim, LSP, Treesitter, formatters
     extraPackages = with pkgs; [
       gcc
+      #libs
+      sdl3
+
+
       gnumake
       cmake
       pkg-config
