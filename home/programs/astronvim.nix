@@ -1,26 +1,64 @@
-{ pkgs, ... }:{
-  #AstroNvim
+{ config, pkgs, ... }:
+
+let
+  # Загружаем AstroNvim прямо с GitHub
+  astronvim = pkgs.fetchFromGitHub {
+    owner = "AstroNvim";
+    repo = "AstroNvim";
+    rev = "v4";  # Укажи нужную версию или commit
+    sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+  };
+in
+{
+  # Enable Neovim
   programs.neovim = {
     enable = true;
-    defaultEditor = true;
     viAlias = true;
     vimAlias = true;
 
-    # Установка AstroNvim
-    withNodeJs = true; # Для LSP и некоторых плагинов
-    withPython3 = true;
-
-    # Базовые зависимости для работы
+    # Все инструменты, которые нужны AstroNvim, LSP, Treesitter, formatters
     extraPackages = with pkgs; [
       gcc
-      ripgrep
-      fd
-      lazygit
+      gnumake
+      cmake
+      pkg-config
+
       nodejs
       python3
-      lua
-      stylua
-      shellcheck
+      python3Packages.pip
+
+      ripgrep
+      fd
+      tree-sitter
+      unzip
+
+      # LSP servers — через NixOS, НЕ Mason
+      lua-language-server
+      pyright
+      clang-tools
+      gopls
+      rust-analyzer
+      vscode-langservers-extracted
+      yaml-language-server
+      taplo # TOML LSP
     ];
   };
+
+  # Устанавливаем AstroNvim как конфиг Neovim
+  home.file.".config/nvim".source = astronvim;
+
+  # Позволяем Mason добавлять свои bin если нужно
+  home.sessionVariables = {
+    PATH = "$HOME/.local/share/nvim/mason/bin:$PATH";
+  };
+
+  # Дополнительно — чтобы Mason мог скачивать (не обязательно)
+  programs.git.enable = true;
+
+  # Утилиты, которые AstroNvim любит использовать
+  home.packages = with pkgs; [
+    bat
+    fzf
+    ripgrep
+  ];
 }
