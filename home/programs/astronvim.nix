@@ -1,14 +1,4 @@
 { config, pkgs, ... }:
-
-let
-  # Загружаем AstroNvim прямо с GitHub
-  astronvim = pkgs.fetchFromGitHub {
-    owner = "AstroNvim";
-    repo = "AstroNvim";
-    rev = "v4";  # Укажи нужную версию или commit
-    sha256 = "sha256-Grm7UI/0qqRtkL39sbKysgZB8XJUubGUqwVDYj8mqMU=";
-  };
-in
 {
   # Enable Neovim
   programs.neovim = {
@@ -34,18 +24,13 @@ in
 
       # LSP servers — через NixOS, НЕ Mason
       lua-language-server
-      pyright
       clang-tools
       gopls
-      rust-analyzer
       vscode-langservers-extracted
       yaml-language-server
       taplo # TOML LSP
     ];
   };
-
-  # Устанавливаем AstroNvim как конфиг Neovim
-  home.file.".config/nvim".source = astronvim;
 
   # Позволяем Mason добавлять свои bin если нужно
   home.sessionVariables = {
