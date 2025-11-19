@@ -1,40 +1,58 @@
-{ config, pkgs, ... }:
-
-let
-  # FHS environment for AstroNvim
+{pkgs, ...}: let
   astronvimFHS = pkgs.buildFHSEnv {
     name = "astronvim-fhs";
 
-    targetPkgs = pkgs: with pkgs; [
-      neovim
+    targetPkgs = pkgs:
+      with pkgs; [
+        neovim
 
-      # C++ Tooling
-      gcc
-      gdb
-      cmake
-      ninja
+        # Core for Mason
+        git
+        curl
+        wget
+        unzip
+        xz
+        gnutar
+        gzip
+        coreutils
+        findutils
+        gnused
+        gnugrep
+        gnumake
+        bash
 
-      llvmPackages.clang
-      llvmPackages.lldb
-      clang-tools   # содержит clangd
+        # Build tools
+        gcc
+        libcxx
+        gccStdenv
+        cmake
+        ninja
+        pkg-config
 
-      pkg-config
-    ];
+        # C++ toolchain
+        llvmPackages.clang
+        llvmPackages.lldb
+        clang-tools # clangd included
+        cmake-language-server
 
-    # Entry point
+        # Node only if you want tsserver / eslint / etc
+        nodejs
+        nodejs.pkgs.npm
+
+        # Rust (required for many Mason tools: stylua, taplo, etc.)
+        rustc
+        cargo
+        python3
+      ];
+
     runScript = "nvim";
   };
-
 in {
-  # FHS environment available system-wi
-
-  # Your manually installed AstroNvim config
-  # Just place files yourself into /etc/astronvim/config/nvim/
   environment.systemPackages = [
     astronvimFHS
 
     (pkgs.writeShellScriptBin "avn" ''
       exec ${astronvimFHS}/bin/astronvim-fhs "$@"
     '')
-];
+  ];
 }

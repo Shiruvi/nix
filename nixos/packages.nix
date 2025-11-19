@@ -30,6 +30,7 @@
 
     # Editors
     vim
+    neovim
 
     # Browser
     firefox
