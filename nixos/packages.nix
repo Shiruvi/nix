@@ -31,6 +31,7 @@
     # Editors
     vim
 
+
     # Browser
     firefox
     chromium
