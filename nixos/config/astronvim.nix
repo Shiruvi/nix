@@ -1,51 +1,43 @@
-# NixOS configuration with packaged AstroNvim + FHS environment
-# This replaces Home Manager entirely.
-
 { config, pkgs, ... }:
 
 let
-
-  # FHS environment using pkgs.buildFHSEnv
-  fhsEnv = pkgs.buildFHSEnv {
+  # FHS environment for AstroNvim
+  astronvimFHS = pkgs.buildFHSEnv {
     name = "astronvim-fhs";
+
     targetPkgs = pkgs: with pkgs; [
       neovim
+
+      # C++ Tooling
       gcc
       gdb
       cmake
       ninja
+
       llvmPackages.clang
       llvmPackages.lldb
-      clang-tools
-      # clangd
+      clang-tools   # содержит clangd
+
       pkg-config
     ];
+
+    # Entry point
     runScript = "nvim";
   };
 
-in
-{
-  # Make FHS env + AstroNvim available to the system
-  environment.systemPackages = [ fhsEnv ];
+in {
+  # FHS environment available system-wide
+  environment.systemPackages = [
+    astronvimFHS
+  ];
 
+  # Your manually installed AstroNvim config
+  # Just place files yourself into /etc/astronvim/config/nvim/
+  environment.systemPackages = [
+    astronvimFHS
 
-  # Wrapper script
-  # Wrapper script for astronvim-fhs
-  environment.etc."astronvim-fhs" = {
-    text = ''
-      #!/usr/bin/env bash
-      exec ${fhsEnv}/bin/astronvim-fhs "$@"
-    '';
-    mode = "0555";
-  };
-
-  # Short command: avn
-  environment.etc."avn" = {
-    text = ''
-      #!/usr/bin/env bash
-      exec ${fhsEnv}/bin/astronvim-fhs "$@"
-    '';
-    mode = "0555";
-  };
-
+    (pkgs.writeShellScriptBin "avn" ''
+      exec ${astronvimFHS}/bin/astronvim-fhs "$@"
+    '')
+];
 }
