@@ -22,7 +22,14 @@ let
           "AstroNvim/astrocommunity",
           { import = "astrocommunity.pack.cpp" },
           { import = "astrocommunity.editing-support.copilot-chat" },
+
+          -- Added themes and plugins
+          { "folke/tokyonight.nvim" },
+          { "vyfor/cord.nvim", build = ":CordUpdate" },
         },
+
+        -- Set theme
+        colorscheme = "tokyonight",
       }
     '';
 
@@ -62,7 +69,17 @@ in
   };
 
   # Wrapper script
+  # Wrapper script for astronvim-fhs
   environment.etc."astronvim-fhs" = {
+    text = ''
+      #!/usr/bin/env bash
+      exec ${fhsEnv}/bin/astronvim-fhs "$@"
+    '';
+    mode = "0555";
+  };
+
+  # Short command: avn
+  environment.etc."avn" = {
     text = ''
       #!/usr/bin/env bash
       exec ${fhsEnv}/bin/astronvim-fhs "$@"
