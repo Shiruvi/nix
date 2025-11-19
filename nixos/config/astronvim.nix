@@ -1,27 +1,10 @@
+# NixOS configuration with packaged AstroNvim + FHS environment
+# This replaces Home Manager entirely.
+
 { config, pkgs, ... }:
 
 let
-  # Use modern FHS builder
-  nixpkgs = import <nixpkgs> { };
-
-  myFHS = nixpkgs.buildFHSEnv {
-    name = "astronvim-fhs";
-    targetPkgs = pkgs: with nixpkgs; [
-      neovim
-      gcc
-      gdb
-      cmake
-      ninja
-      llvmPackages.clang
-      llvmPackages.lldb
-      clang-tools
-      clangd
-      pkg-config
-    ];
-    runScript = "nvim";
-  };
-
-  # Full AstroNvim package with user config
+  # Full AstroNvim package
   astroNvimPkg = pkgs.stdenv.mkDerivation rec {
     pname = "astronvim-full";
     version = "1.0";
@@ -39,7 +22,7 @@ let
           "AstroNvim/astrocommunity",
           { import = "astrocommunity.pack.cpp" },
           { import = "astrocommunity.editing-support.copilot-chat" },
-        }
+        },
       }
     '';
 
@@ -50,23 +33,41 @@ let
     '';
   };
 
+  # FHS environment using pkgs.buildFHSEnv
+  fhsEnv = pkgs.buildFHSEnv {
+    name = "astronvim-fhs";
+    targetPkgs = pkgs: with pkgs; [
+      neovim
+      gcc
+      gdb
+      cmake
+      ninja
+      llvmPackages.clang
+      llvmPackages.lldb
+      clang-tools
+      clangd
+      pkg-config
+    ];
+    runScript = "nvim";
+  };
+
 in
 {
-  home.packages = [ astroNvimPkg myFHS ];
+  # Make FHS env + AstroNvim available to the system
+  environment.systemPackages = [ astroNvimPkg fhsEnv ];
 
-  # Install packaged AstroNvim config
-  home.file.".config/nvim" = {
+  # Install AstroNvim config into /etc
+  environment.etc."nvim" = {
     source = astroNvimPkg + "/config/nvim";
-    recursive = true;
   };
 
-  home.file.".local/bin/astronvim-fhs" = {
+  # Wrapper script
+  environment.etc."astronvim-fhs" = {
     text = ''
       #!/usr/bin/env bash
-      exec ${myFHS}/bin/astronvim-fhs "$@"
+      exec ${fhsEnv}/bin/astronvim-fhs "$@"
     '';
-    executable = true;
+    mode = "0555";
   };
 
-  home.sessionPath = [ "$HOME/.nix-profile/bin" ];
 }

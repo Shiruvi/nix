@@ -2,6 +2,6 @@
   imports = [
     ./cpp.nix 
     ./cursors.nix
-    ./astronvim.nix
+    # ./astronvim.nix
   ];
 }
