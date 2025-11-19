@@ -26,10 +26,7 @@ let
   };
 
 in {
-  # FHS environment available system-wide
-  environment.systemPackages = [
-    astronvimFHS
-  ];
+  # FHS environment available system-wi
 
   # Your manually installed AstroNvim config
   # Just place files yourself into /etc/astronvim/config/nvim/
