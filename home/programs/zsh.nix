@@ -1,19 +1,21 @@
 { pkgs, ... }: {
-home.packages = with pkgs; [
-    fzf
-    fzf-tab
-  ];
   programs.zsh = {
     enable = true;
     enableCompletion = false;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-        initExtra = ''
-       source ${pkgs.fzf}/share/fzf/completion.zsh
-       source ${pkgs.fzf}/share/fzf/key-bindings.zsh
-       source ${pkgs.fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
-    #'';
-    ohMyZsh = {
+    plugins = [
+      {
+        name = "zsh-autocomplete"; # completes history, commands, etc.
+        src = pkgs.fetchFromGitHub {
+          owner = "marlonrichert";
+          repo = "zsh-autocomplete";
+          rev = "762afacbf227ecd173e899d10a28a478b4c84a3f";
+          sha256 = "1357hygrjwj5vd4cjdvxzrx967f1d2dbqm2rskbz5z1q6jri1hm3";
+        };
+        }
+        ];
+    oh-my-zsh = {
         enable = true;
         plugins = [
                 "git"
