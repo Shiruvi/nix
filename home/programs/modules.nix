@@ -1,6 +1,7 @@
 {
   imports = [
-    ./cpp.nix 
+    ./cpp.nix
     ./cursors.nix
+    ./nvf.nix
   ];
 }

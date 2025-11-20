@@ -6,8 +6,16 @@
       name = "tokyonight";
     };
     settings = {
-      vim.viAlias = true;
-      vim.vimAlias = true;
+      vim = {
+        theme = {
+          enable = true;
+          name = "tokyonight";
+          style = "night";
+        };
+        statusline.lualine.enable = true;
+        telescope.enable = true;
+        autocomplete.nvim-cmp.enable = true;
+      };
     };
   };
 }
