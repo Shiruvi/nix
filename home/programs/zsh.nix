@@ -1,8 +1,12 @@
 { pkgs, ... }: {
+home.packages = with pkgs; [
+    fzf
+    fzf-tab
+  ];
   programs.zsh = {
     enable = true;
     enableCompletion = false;
-    autosuggestions.enable = true;
+    autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
         initExtra = ''
        source ${pkgs.fzf}/share/fzf/completion.zsh
@@ -23,8 +27,4 @@
     theme = "powerlevel10k/powerlevel10k";
   };
 };
-environment.systemPackages = with pkgs; [
-        fzf
-        fzf-tab
-  ];
   }
