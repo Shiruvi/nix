@@ -1,10 +1,6 @@
 {
   programs.nvf = {
     enable = true;
-    theme = {
-      enable = true;
-      name = "tokyonight";
-    };
     settings = {
       vim = {
         theme = {
