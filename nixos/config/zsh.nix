@@ -4,9 +4,6 @@
     enableBashCompletion = true;
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
-    setOptions = {
-        "sourse $HOME/nix/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
-    };
   };
   programs.zsh.ohMyZsh = {
     enable = true;
@@ -21,4 +18,5 @@
     custom = "$HOME/.oh-my-zsh/custom/";
     theme = "powerlevel10k/powerlevel10k";
   };
+  services.atuin.enable = true;
 }
