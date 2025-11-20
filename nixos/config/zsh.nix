@@ -18,5 +18,4 @@
     custom = "$HOME/.oh-my-zsh/custom/";
     theme = "powerlevel10k/powerlevel10k";
   };
-  services.atuin.enable = true;
 }

@@ -22,7 +22,7 @@
     # NixOS
     home-manager
     accountsservice
-    ghostty
+    kitty
     usbutils
     pciutils
     openvpn
