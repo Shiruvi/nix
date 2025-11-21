@@ -39,7 +39,7 @@
     };
 
     nvf = {
-      url = "github:NotAShelf/nvf";
+      url = "github:NotAShelf/nvf/v0.8";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

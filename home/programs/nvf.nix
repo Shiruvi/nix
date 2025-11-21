@@ -16,6 +16,17 @@
             toggle = "<leader>e";
           };
         };
+        tabline.nvimBufferline = {
+          enable = true;
+          setupOpts.options.show_duplicate_prefix = false;
+          setupOpts.options.show_tab_indicators = false;
+          setupOpts.options.show_close_icon = false;
+          mappings = {
+            closeCurrent = "<leader>c";
+            cycleNext = "]b";
+            cyclePrevious = "[b";
+          };
+        };
         statusline.lualine.enable = true;
         telescope.enable = true;
         autocomplete.nvim-cmp.enable = true;
@@ -27,8 +38,6 @@
         languages = {
           enableTreesitter = true;
           enableFormat = true;
-          enableLSP = true;
-          #           bash.enable = true;
           nix.enable = true;
         };
       };
