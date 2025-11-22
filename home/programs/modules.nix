@@ -3,7 +3,7 @@
     ./cpp.nix
     ./cursors.nix
     ./yazi.nix
-    ./nvf/modules
+    ./nvf/modules.nix
 
   ];
 }
