@@ -19,6 +19,7 @@
         tabline.nvimBufferline = {
           enable = true;
           setupOpts.options = {
+            separator_style = null;
             indicator.style = "icon";
             numbers = "none";
           };
@@ -28,42 +29,9 @@
             cyclePrevious = "[b";
           };
         };
-        statusline.lualine = {
-          enable = true;
-          activeSection.z = [
-            ''
-              {
-                "",
-                draw_empty = true,
-                separator = { left = '', right = '' }
-              }
-            ''
-            ''
-              {
-                "progress",
-                separator = {left = ''}
-              }
-            ''
-            ''
-              {"location"}
-            ''
-            ''
-
-
-              {
-                "fileformat",
-                color = {fg='black'},
-                symbols = {
-                  unix = ' ', -- e712
-                  dos = '',  -- e70f
-                  mac = '',  -- e711
-                }
-              }
-            ''
-          ];
-        };
         telescope.enable = true;
         autocomplete.nvim-cmp.enable = true;
+        snippets.luasnip.enable = true;
         lsp = {
           enable = true;
           formatOnSave = true;
@@ -73,6 +41,8 @@
           enableTreesitter = true;
           enableFormat = true;
           nix.enable = true;
+          html.enable = true;
+          css.enable = true;
         };
       };
     };
