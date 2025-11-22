@@ -48,6 +48,8 @@
               {"location"}
             ''
             ''
+
+
               {
                 "fileformat",
                 color = {fg='black'},
