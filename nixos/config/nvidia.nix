@@ -1,4 +1,5 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, ... }:
+{
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.graphics.enable = true;
   hardware.opentabletdriver.enable = true;
@@ -11,9 +12,9 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
   # boot.blacklistedKernelModules = [ "nouveau" ];
-  boot.extraModulePackages = [ 
-  config.boot.kernelPackages.nvidiaPackages.stable
-  config.boot.kernelPackages.rtl8852au
+  boot.extraModulePackages = [
+    config.boot.kernelPackages.nvidiaPackages.stable
+    config.boot.kernelPackages.rtl8852au
   ];
   environment.sessionVariables = {
     GDM_BACKEND = "nvidia_drm";

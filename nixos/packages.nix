@@ -53,6 +53,7 @@
     rar
     nftables
     wl-clipboard
+    eza
 
     #Wine
     wineWowPackages.stable
