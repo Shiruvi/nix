@@ -28,6 +28,7 @@
     pciutils
     openvpn
     pavucontrol
+    alsa-utils
 
     # Editors
     vim
