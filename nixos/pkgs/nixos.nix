@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  enviroment.systemPackeges = with pkgs; [
+  environment.systemPackages = with pkgs; [
     home-manager
     accountsservice
     kitty
