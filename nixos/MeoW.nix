@@ -1,6 +1,6 @@
 {
   imports = [
-    ./config/MeoW.nix
+    ./config/MeoW/modules.nix
     ./pkgs/MeoW.nix
     ./hardware/MeoW.nix
   ];

@@ -1,7 +1,9 @@
 {
   imports = [
-    ./cpp.nix 
+    ./cpp.nix
     ./cursors.nix
-    ./code.nix
+    ./yazi.nix
+    ./nvf/modules.nix
+
   ];
 }

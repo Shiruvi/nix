@@ -1,4 +1,10 @@
 {
+  services.dnsmasq = {
+    enable = true;
+    settings = {
+      address = "/max.ru/0.0.0.0";
+    };
+  };
   services.udisks2.enable = true;
   security.polkit.enable = true;
   services.gvfs.enable = true;

@@ -1,6 +1,6 @@
 {
   imports = [
-    ./config/Nya.nix
+    ./config/Nya/modules.nix
     ./pkgs/Nya.nix
     ./hardware/Nya.nix
   ];

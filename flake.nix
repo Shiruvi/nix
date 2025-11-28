@@ -37,45 +37,52 @@
       url = "github:Svenum/Solaar-Flake/main"; # Uncomment line for latest unstable version
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nvf = {
+      url = "github:NotAShelf/nvf/v0.8";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs =
-    { nixpkgs
-    , home-manager
-    , dgop
-    , dms-cli
-    , dankMaterialShell
-    , niri
-    , solaar
-    , ...
-    } @ inputs: {
-      nixosConfigurations = {
-        MeoW = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            ./nixos/configuration.nix
-            ./nixos/MeoW.nix
-          ];
-          specialArgs = { inherit inputs; };
-        };
-        Nya = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            ./nixos/configuration.nix
-            ./nixos/Nya.nix
-            solaar.nixosModules.default
-          ];
-          specialArgs = { inherit inputs; };
-        };
-      };
-      homeConfigurations.Shiruvi = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages."x86_64-linux";
+  outputs = {
+    nixpkgs,
+    home-manager,
+    dgop,
+    dms-cli,
+    dankMaterialShell,
+    niri,
+    solaar,
+    nvf,
+    ...
+  } @ inputs: {
+    nixosConfigurations = {
+      MeoW = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
         modules = [
-          ./home/home.nix
-          dankMaterialShell.homeModules.dankMaterialShell.default
-          dankMaterialShell.homeModules.dankMaterialShell.niri
-          inputs.niri.homeModules.niri
+          ./nixos/configuration.nix
+          ./nixos/MeoW.nix
         ];
+        specialArgs = {inherit inputs;};
+      };
+      Nya = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./nixos/configuration.nix
+          ./nixos/Nya.nix
+          solaar.nixosModules.default
+        ];
+        specialArgs = {inherit inputs;};
       };
     };
+    homeConfigurations.Shiruvi = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages."x86_64-linux";
+      modules = [
+        ./home/home.nix
+        dankMaterialShell.homeModules.dankMaterialShell.default
+        dankMaterialShell.homeModules.dankMaterialShell.niri
+        inputs.niri.homeModules.niri
+        nvf.homeManagerModules.default
+      ];
+    };
+  };
 }

@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   nixpkgs.config = {
     allowUnfree = true;
     allowUnsupportedSystem = true;
@@ -22,14 +23,16 @@
     # NixOS
     home-manager
     accountsservice
-    ghostty
+    kitty
     usbutils
     pciutils
     openvpn
     pavucontrol
+    alsa-utils
 
     # Editors
     vim
+    neovim
 
 
     # Browser
@@ -52,6 +55,7 @@
     rar
     nftables
     wl-clipboard
+    eza
 
     #Wine
     wineWowPackages.stable
