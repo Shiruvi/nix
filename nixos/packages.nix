@@ -34,6 +34,7 @@
     vim
     neovim
 
+
     # Browser
     firefox
     chromium
