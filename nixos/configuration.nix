@@ -2,8 +2,8 @@
   #WARN: Don't touch this preset and create custom one please
   imports = [
     ./packages.nix
-    ./config/Modules.nix
-    ./pkgs/Modules.nix
+    ./config/modules.nix
+    ./pkgs/modules.nix
   ];
   nixpkgs.config = {
     allowUnfree = true;

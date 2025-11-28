@@ -1,7 +1,7 @@
 {
   imports = [
     ./config/Nya/modules.nix
-    ./pkgs/Nya.nix
+    ./pkgs/Nya/modules.nix
     ./hardware/Nya.nix
   ];
   networking.hostName = "Nya";
