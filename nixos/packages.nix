@@ -29,6 +29,7 @@
     niri
     xwayland-satellite
     swww
+    amnevia-vpn
 
     #disks
     ntfs3g
