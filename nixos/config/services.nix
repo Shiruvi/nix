@@ -21,5 +21,4 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-  programs.steam.enable = true;
 }

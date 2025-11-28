@@ -5,6 +5,10 @@
     ./config/Modules.nix
     ./pkgs/Modules.nix
   ];
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowUnsupportedSystem = true;
+  };
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "ntfs" ];
