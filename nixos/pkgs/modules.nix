@@ -5,5 +5,6 @@
     ./fonts.nix
     ./editors.nix
     ./nixos.nix
+    ./amnezia.nix
   ];
 }
