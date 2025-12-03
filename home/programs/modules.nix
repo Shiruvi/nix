@@ -3,7 +3,6 @@
     ./cpp.nix
     ./cursors.nix
     ./yazi.nix
-    ./nvf/modules.nix
-
+    ./nixvim/modules.nix
   ];
 }

@@ -38,10 +38,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    inputs.nixvim = {
-      url = "github:nix-community/nixvim";
-      # If you are not running an unstable channel of nixpkgs, select the corresponding branch of Nixvim.
-      # url = "github:nix-community/nixvim/nixos-25.11";
+    nixvim = {
+      # url = "github:nix-community/nixvim";
+      url = "github:nix-community/nixvim/nixos-25.11";
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -56,7 +55,7 @@
       dankMaterialShell,
       niri,
       solaar,
-      nvf,
+      nixvim,
       ...
     }@inputs:
     {
@@ -66,7 +65,6 @@
           modules = [
             ./nixos/configuration.nix
             ./nixos/MeoW.nix
-            inputs.nixvim.nixosModules.nixvim
           ];
           specialArgs = { inherit inputs; };
         };
@@ -76,7 +74,6 @@
             ./nixos/configuration.nix
             ./nixos/Nya.nix
             solaar.nixosModules.default
-            inputs.nixvim.nixosModules.nixvim
           ];
           specialArgs = { inherit inputs; };
         };
@@ -88,6 +85,7 @@
           dankMaterialShell.homeModules.dankMaterialShell.default
           dankMaterialShell.homeModules.dankMaterialShell.niri
           inputs.niri.homeModules.niri
+          inputs.nixvim.homeModules.nixvim
         ];
       };
     };

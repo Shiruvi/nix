@@ -6,6 +6,5 @@
     ./editors.nix
     ./nixos.nix
     ./amnezia.nix
-    ./nixvim/modules.nix
   ];
 }
