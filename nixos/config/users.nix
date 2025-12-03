@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   users.users.Shiruvi = {
     isNormalUser = true;
     extraGroups = [
@@ -11,7 +12,7 @@
       "disk"
       "uinput"
     ];
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
   };
   system.activationScripts.script.text = ''
     mkdir -p /var/lib/AccountsService/{icons,users}
