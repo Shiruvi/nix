@@ -7,9 +7,9 @@
   programs.gamemode.enable = true;
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
-  enviroment.systemPackeges = with pkgs; [
+  environment.systemPackages = with pkgs; [
     mangohud
-    protonup
+    protonup-ng
     osu-lazer-bin
   ];
   environment.sessionVariables = {

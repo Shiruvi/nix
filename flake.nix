@@ -38,51 +38,57 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nvf = {
-      url = "github:NotAShelf/nvf/v0.8";
+    inputs.nixvim = {
+      url = "github:nix-community/nixvim";
+      # If you are not running an unstable channel of nixpkgs, select the corresponding branch of Nixvim.
+      # url = "github:nix-community/nixvim/nixos-25.11";
+
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = {
-    nixpkgs,
-    home-manager,
-    dgop,
-    dms-cli,
-    dankMaterialShell,
-    niri,
-    solaar,
-    nvf,
-    ...
-  } @ inputs: {
-    nixosConfigurations = {
-      MeoW = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./nixos/configuration.nix
-          ./nixos/MeoW.nix
-        ];
-        specialArgs = {inherit inputs;};
+  outputs =
+    {
+      nixpkgs,
+      home-manager,
+      dgop,
+      dms-cli,
+      dankMaterialShell,
+      niri,
+      solaar,
+      nvf,
+      ...
+    }@inputs:
+    {
+      nixosConfigurations = {
+        MeoW = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./nixos/configuration.nix
+            ./nixos/MeoW.nix
+            inputs.nixvim.nixosModules.nixvim
+          ];
+          specialArgs = { inherit inputs; };
+        };
+        Nya = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./nixos/configuration.nix
+            ./nixos/Nya.nix
+            solaar.nixosModules.default
+            inputs.nixvim.nixosModules.nixvim
+          ];
+          specialArgs = { inherit inputs; };
+        };
       };
-      Nya = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+      homeConfigurations.Shiruvi = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages."x86_64-linux";
         modules = [
-          ./nixos/configuration.nix
-          ./nixos/Nya.nix
-          solaar.nixosModules.default
+          ./home/home.nix
+          dankMaterialShell.homeModules.dankMaterialShell.default
+          dankMaterialShell.homeModules.dankMaterialShell.niri
+          inputs.niri.homeModules.niri
         ];
-        specialArgs = {inherit inputs;};
       };
     };
-    homeConfigurations.Shiruvi = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages."x86_64-linux";
-      modules = [
-        ./home/home.nix
-        dankMaterialShell.homeModules.dankMaterialShell.default
-        dankMaterialShell.homeModules.dankMaterialShell.niri
-        inputs.niri.homeModules.niri
-        nvf.homeManagerModules.default
-      ];
-    };
-  };
 }
