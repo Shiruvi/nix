@@ -65,6 +65,7 @@
           modules = [
             ./nixos/configuration.nix
             ./nixos/MeoW.nix
+	    nixvim.nixosModules.nixvim
           ];
           specialArgs = { inherit inputs; };
         };
@@ -74,6 +75,7 @@
             ./nixos/configuration.nix
             ./nixos/Nya.nix
             solaar.nixosModules.default
+	    nixvim.nixosModules.nixvim
           ];
           specialArgs = { inherit inputs; };
         };
@@ -85,7 +87,6 @@
           dankMaterialShell.homeModules.dankMaterialShell.default
           dankMaterialShell.homeModules.dankMaterialShell.niri
           inputs.niri.homeModules.niri
-          inputs.nixvim.homeModules.nixvim
         ];
       };
     };
