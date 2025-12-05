@@ -1,6 +1,7 @@
 {
-plugins.neo-tree.enable = true;
-plugins.neo-tree.settings = {
+programs.nixvim.plugins.neo-tree = {
+enable = true;
+settings = {
 close_if_last_window = true;
   filesystem = {
     follow_current_file = {
@@ -8,5 +9,6 @@ close_if_last_window = true;
       leave_dirs_open = true;
     };
   };
+};
 };
 }
