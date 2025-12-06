@@ -11,6 +11,7 @@
     vesktop
     keepassxc
     obs-studio
+    lunar-client
 
     # CLI Utils
     btop
