@@ -2,9 +2,9 @@
   imports = [
     ./disks.nix
     ./logitech.nix
-    ./nvidia.nix
     ./usbmode.nix
     ./wooting.nix
     ./tablet.nix
+    ./radeon.nix
   ];
 }

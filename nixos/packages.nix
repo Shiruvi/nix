@@ -12,6 +12,7 @@
     keepassxc
     obs-studio
     lunar-client
+	pavucontrol
 
     # CLI Utils
     btop
