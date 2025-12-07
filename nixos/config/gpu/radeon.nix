@@ -1,5 +1,8 @@
+{ pkgs, ... }:
 {
 boot.initrd.kernelModules = [ "amdgpu" ];
-services.lm_sensors.enable = true;
   services.xserver.videoDrivers = [ "amdgpu" ];
+  environment.systemPackages = with pkgs; [
+  amdgpu_top
+  ];
 }
