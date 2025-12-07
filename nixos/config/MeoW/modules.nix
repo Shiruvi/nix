@@ -1,5 +1,5 @@
 {
   imports = [
-    ./radeon.nix
+  ./../gpu/radeon.nix
   ];
 }
