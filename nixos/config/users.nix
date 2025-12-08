@@ -11,7 +11,7 @@
       "disk"
       "uinput"
     ];
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
   };
   system.activationScripts.script.text = ''
     mkdir -p /var/lib/AccountsService/{icons,users}
