@@ -5,5 +5,7 @@ imports = [
 	./basic.nix
 	./clue.nix
 	./moves.nix
+	./comment.nix
+	./completion.nix
 ];
 }

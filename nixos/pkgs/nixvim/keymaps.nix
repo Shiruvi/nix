@@ -11,14 +11,6 @@ config.keymaps = [
     };
     }
   {
-    action = "<cmd>Neotree toggle<CR>";
-    key = "<leader>e";
-    options = {
-      silent = true;
-      desc = "Show Neotree";
-    };
-  }
-  {
     action = "<cmd>w<CR>";
     key = "<leader>w";
     options = {
