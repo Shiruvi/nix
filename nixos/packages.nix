@@ -10,8 +10,6 @@
     ayugram-desktop
     vesktop
     keepassxc
-    obs-studio
-    lunar-client
 	pavucontrol
 
     # CLI Utils
@@ -28,6 +26,8 @@
     # graphics
     cliphist
     nautilus
+    fuzzel
+    clipse
     niri
     xwayland-satellite
     swww
