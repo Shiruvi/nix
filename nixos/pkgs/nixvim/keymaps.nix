@@ -4,18 +4,26 @@ config.globals.mapleader = " ";
 config.keymaps = [
   {
     action = "<cmd>Neotree<CR>";
+    key = "<leader>o";
+    options = {
+      silent = true;
+      desc = "Toggle Neotree";
+    };
+    }
+  {
+    action = "<cmd>Neotree toggle<CR>";
     key = "<leader>e";
     options = {
       silent = true;
       desc = "Show Neotree";
     };
-    }
+  }
   {
-    action = "<cmd>Neotree toggle<CR>";
-    key = "<leader>o";
+    action = "<cmd>w<CR>";
+    key = "<leader>w";
     options = {
       silent = true;
-      desc = "Toggle Neotree";
+      desc = "Save file";
     };
   }
 ];
