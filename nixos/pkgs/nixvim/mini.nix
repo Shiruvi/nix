@@ -13,9 +13,7 @@ programs.nixvim.plugins.mini = {
   extra = {};
   fuzzy = {};
   files = {};
-  tabline = {
-
-	  };
+  tabline = {};
   statusline = {};
   
   comment = {
