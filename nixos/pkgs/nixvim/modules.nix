@@ -4,6 +4,10 @@
     ./neotree.nix
     ./wichkey.nix
     ./keymaps.nix
-    ./mini/modules.nix
+
+
+
+    ./mini.nix
+#    ./mini/modules.nix
   ];
 }
